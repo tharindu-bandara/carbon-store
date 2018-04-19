@@ -1,4 +1,4 @@
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) WSO2 Inc. (http://wso2.com) All Rights Reserved.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,12 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
-  -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+  --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>org.wso2</groupId>
         <artifactId>wso2</artifactId>
         <version>1</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.wso2.carbon.store</groupId>
     <artifactId>carbon-store</artifactId>
@@ -129,8 +125,26 @@
                             </goals>
                             <configuration>
                                 <rules>
-
+                                    <rule>
+                                        <element>BUNDLE</element>
+                                        <limits>
+                                            <limit>
+                                                <minimum>0.0</minimum>
+                                            </limit>
+                                        </limits>
+                                    </rule>
                                 </rules>
+                                <dataFile>${project.build.directory}/jacoco.exec</dataFile>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>default-prepare-agent-by-coverage-enforcer</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                            <configuration>
+                                <propertyName>argLine</propertyName>
+                                <destFile>${project.build.directory}/jacoco.exec</destFile>
                             </configuration>
                         </execution>
                     </executions>
@@ -143,6 +157,7 @@
                         <systemPropertyVariables>
                             <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
                         </systemPropertyVariables>
+                        <argLine>${argLine}</argLine>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -318,7 +333,7 @@
                 <artifactId>org.wso2.carbon.registry.event.core</artifactId>
                 <version>${carbon.registry.version}</version>
             </dependency>
-             <dependency>
+            <dependency>
                 <groupId>org.wso2.carbon.registry</groupId>
                 <artifactId>org.wso2.carbon.registry.event.ws</artifactId>
                 <version>${carbon.registry.version}</version>
@@ -359,7 +374,6 @@
                 <artifactId>h2-database-engine</artifactId>
                 <version>${h2.wso2.version}</version>
             </dependency>
-
             <!--Dependency for Asset Client -->
             <dependency>
                 <groupId>commons-cli</groupId>
@@ -391,8 +405,6 @@
                 <artifactId>commons-io</artifactId>
                 <version>${apache.commons.io.version}</version>
             </dependency>
-
-
             <!--Dependency for Integration Tests-->
             <!--<dependency>-->
             <!--<groupId>org.wso2.carbon.automation</groupId>-->
@@ -628,14 +640,11 @@
     <properties>
         <project.scm.id>github-scm</project.scm.id>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
         <!--<carbon.platform.version>4.3.0-SNAPSHOT</carbon.platform.version>-->
         <carbon.kernel.version>4.4.14</carbon.kernel.version>
         <carbon.social.version>2.4.23-SNAPSHOT</carbon.social.version>
-
         <carbon.store.version>2.4.23-SNAPSHOT</carbon.store.version>
         <!--repo versions-->
-
         <carbon.commons.version>4.5.4</carbon.commons.version>
         <carbon.registry.version>4.6.3</carbon.registry.version>
         <carbon.governance.version>4.7.5</carbon.governance.version>
@@ -647,13 +656,10 @@
         <identity.application.auth.basic.auth.version>5.3.0</identity.application.auth.basic.auth.version>
         <carbon.multitenancy.version>4.5.2</carbon.multitenancy.version>
         <carbon.analytics.common.version>5.0.8</carbon.analytics.common.version>
-
         <!--<test.framework.version>4.3.1</test.framework.version>-->
         <!--<automation.utils.version>4.3.0-SNAPSHOT</automation.utils.version>-->
-
         <operadriver.version>0.8.1</operadriver.version>
         <selenium.version>2.40.0</selenium.version>
-
         <maven.scrplugin.version>1.7.2</maven.scrplugin.version>
         <maven.wagon.ssh.version>2.1</maven.wagon.ssh.version>
         <maven.incrementalbuildplugin.version>1.2</maven.incrementalbuildplugin.version>
@@ -670,7 +676,6 @@
         <maven.cleanplugin.version>2.5</maven.cleanplugin.version>
         <maven.gpgplugin.version>1.0-alpha-3</maven.gpgplugin.version>
         <maven.carbon.p2plugin.version>1.5.3</maven.carbon.p2plugin.version>
-
         <rhino.osgi.version>1.7.0.R4.wso2v1</rhino.osgi.version>
         <commons-logging.version>1.1.1</commons-logging.version>
         <opensaml2.wso2.version>2.4.1.wso2v1</opensaml2.wso2.version>
@@ -681,7 +686,6 @@
         <shindig.version>2.5.0-beta5</shindig.version>
         <el.api.version>2.2</el.api.version>
         <h2.wso2.version>1.2.140.wso2v3</h2.wso2.version>
-
         <jaggery.feature.version>0.12.6</jaggery.feature.version>
         <caramel.feature.version>1.5.5</caramel.feature.version>
         <handlebars.feature.version>1.5.5</handlebars.feature.version>
@@ -693,14 +697,11 @@
         <jaggery-test.feature.version>1.2.2</jaggery-test.feature.version>
         <slf4j.wso2.version>1.5.10.wso2v1</slf4j.wso2.version>
         <log4j.version>1.2.17</log4j.version>
-
         <httpcomponents-httpclient.wso2.version>4.1.1-wso2v1</httpcomponents-httpclient.wso2.version>
         <httpcomponents-httpcore.wso2.version>4.1.0-wso2v1</httpcomponents-httpcore.wso2.version>
         <commons.cli.version>1.2</commons.cli.version>
         <commons.beanutils.version>1.8.3</commons.beanutils.version>
         <http.components.version>4.3.4</http.components.version>
         <apache.commons.io.version>2.4</apache.commons.io.version>
-
     </properties>
 </project>
-
